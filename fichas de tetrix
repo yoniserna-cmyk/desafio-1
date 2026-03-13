@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+
+
+
+
+int main() {
+    
+    unsigned char piezaI[4] = { //unsigned char ocupa solo 1 byte
+        0b1111,
+        0b0000,
+        0b0000,
+        0b0000
+    };
+    unsigned char piezaO[2] = {
+        0b11,
+        0b11
+    };
+    unsigned char piezaT[2] = {
+        0b111,
+        0b010
+    };
+    unsigned char piezaS[2] = {
+        0b011,
+        0b110
+    };
+    unsigned char piezaZ[2] = {
+        0b110,
+        0b011
+    };
+    unsigned char piezaL[2] = {
+        0b100,
+        0b111
+    };
+    unsigned char piezaJ[2] = {
+        0b001,
+        0b111
+    };
+
+    int** matritwo;
+    int filas = 0;
+    int columnas = 0;
+
+    cout << "filas: " << endl;
+    cin >> filas;
+    cout << "columnas: " << endl;
+    cin >> columnas;
+
+    matritwo = new int*[filas];
+
+    for(int fila=0; fila<filas; fila++){
+        matritwo[fila] = new int[columnas];
+    }
+    for(int fila=0; fila<filas; fila++){
+        cout << "|";
+        for(int columna = 0;columna<columnas;columna++){
+            matritwo[fila][columna] = 0;
+            cout << matritwo[fila][columna]<< " ";
+        }
+        cout << "|";
+        cout << endl;
+    }
+    for(int fila=0; fila<filas; fila++){
+        delete [] matritwo[fila];
+    }
+    delete [] matritwo;
+}
