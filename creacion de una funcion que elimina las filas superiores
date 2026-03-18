@@ -1,0 +1,40 @@
+// Elimina filas completas y baja las superiores
+static void eliminarFilas(unsigned char **tablero,int ancho,int alto)
+{
+    int bytesFila = ancho/8;
+
+    for(int y=0;y<alto;y++)
+    {
+        int llena = 1;
+
+        for(int b=0;b<bytesFila;b++)
+        {
+            if(tablero[y][b] != 255)
+            {
+                llena = 0;
+                break;
+            }
+        }
+
+        if(llena)
+        {
+            // Bajar todas las filas superiores
+            for(int i=y;i>0;i--)
+            {
+                for(int b=0;b<bytesFila;b++)
+                {
+                    tablero[i][b] = tablero[i-1][b];
+                }
+            }
+
+            // Limpiar fila superior
+            for(int b=0;b<bytesFila;b++)
+            {
+                tablero[0][b] = 0;
+            }
+
+            // Revisar la misma fila y de nuevo (ahora tiene el contenido de la de arriba)
+            y--;
+        }
+    }
+}
