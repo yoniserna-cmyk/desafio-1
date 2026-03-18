@@ -1,0 +1,29 @@
+int colision(unsigned char **tablero,
+             unsigned short *pieza,
+             int px,int py,
+             int anchoP,int altoP,
+             int ancho,int alto)
+{
+    for(int y=0;y<altoP;y++)
+    {
+        for(int x=0;x<anchoP;x++)
+        {
+            if(pieza[y] & (1<<(anchoP-1-x)))
+            {
+                int tx = px + x;
+                int ty = py + y;
+
+                if(ty >= alto)
+                    return 1;
+
+                if(tx < 0 || tx >= ancho)
+                    return 1;
+
+                if(ocupado(tablero,tx,ty))
+                    return 1;
+            }
+        }
+    }
+
+    return 0;
+}
